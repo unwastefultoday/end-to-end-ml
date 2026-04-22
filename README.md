@@ -165,11 +165,11 @@ Low AUC + inconsistent model gains strongly suggest:
 
 ---
 
-## Recommendations for Production
+## Recommendations for Future Work
 
 ### 1. Extend Historical Window
 
-* Move from 3 months → 6–12 months
+* Move from 3 months → 12+ months as customet behavior is better captured across a yearly basis.
 * Capture repeat behavior and churn cycles
 
 ### 2. Build Stronger Temporal Features
@@ -181,15 +181,8 @@ Low AUC + inconsistent model gains strongly suggest:
 ### 3. Improve Label Definition
 
 * Test multiple churn windows
-* Consider probabilistic churn scoring
 
-### 4. Add New Data Sources
-
-* Marketing touchpoints
-* Customer support interactions
-* Product/category-level engagement
-
-### 5. Deployment Strategy
+### 4. Deployment Strategy
 
 * Use time-based validation
 * Retrain quarterly
@@ -208,14 +201,6 @@ Low AUC + inconsistent model gains strongly suggest:
 * **Version Control:** Git, GitHub
 * **Automation:** GitHub Actions
 
----
-
-## 📎 Future Work
-
-* Deploy batch churn scoring pipeline
-* Integrate with CRM for retention campaigns
-* Build dashboards for business stakeholders
-* Explore sequence models if data volume increases
 
 ---
 
@@ -223,10 +208,10 @@ Low AUC + inconsistent model gains strongly suggest:
 
 <img width="507" height="432" alt="download" src="https://github.com/user-attachments/assets/5dafd8d3-27cb-424c-8de4-0113fbaeef07" />
 
-                                Confusion Matrix of the Stacking Classifier Model. As can be seen it is unable to distinguish TN values.
+    Confusion Matrix of the Stacking Classifier Model. As can be seen it is unable to distinguish TN values.
 <img width="992" height="558" alt="download" src="https://github.com/user-attachments/assets/dcaca8f9-18d1-4cb5-9018-3ec6a1f9d7fa" />
 
-                                SHAP Heatmap. As can be seen, most features have weak, inconsistent impact. No clear segmentation pattern across instances
+    SHAP Heatmap. As can be seen, most features have weak, inconsistent impact. No clear segmentation pattern across instances
 
 ---
 
