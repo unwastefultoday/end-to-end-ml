@@ -5,6 +5,9 @@ from models import get_stacking_model, save_model, load_pretrained_model
 from sklearn.preprocessing import StandardScaler
 from imblearn.over_sampling import SMOTE
 import os
+import gspread
+from google.oauth2.service_account import Credentials
+import json
 
 def run_pipeline(force_retrain=False):
     print("--- Churn Prediction Pipeline ---")
@@ -59,6 +62,25 @@ def run_pipeline(force_retrain=False):
     output.to_csv(output_path, index=False)
     print(f"Results saved to {output_path}")
 
+
+def push_to_sheets(df):
+    creds_dict = json.loads(os.environ["GOOGLE_CREDS"])
+
+    creds = Credentials.from_service_account_info(
+        creds_dict,
+        scopes=["https://www.googleapis.com/auth/spreadsheets"]
+    )
+
+    client = gspread.authorize(creds)
+
+    sheet = client.open("Churn Predictions").sheet1
+
+    sheet.clear()
+    sheet.update([df.columns.values.tolist()] + df.values.tolist())
+
 if __name__ == "__main__":
     # Change to True if you want to ignore the pickle and retrain
+    print("Running Pipeline")
     run_pipeline(force_retrain=False)
+    push_to_sheets(output)
+    print("Pushed results to Google Sheets")
