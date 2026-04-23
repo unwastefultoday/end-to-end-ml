@@ -26,7 +26,7 @@ def run_pipeline(force_retrain=False):
     model = None
     if not force_retrain:
         print("Attempting to load pretrained model...")
-        model = load_pretrained_model('models/stacking_21_04.pkl')
+        model = load_pretrained_model('model/stacking_21_04.pkl')
     
     if model is None:
         if not force_retrain:
