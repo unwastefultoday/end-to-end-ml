@@ -21,15 +21,8 @@ The goal is to predict whether a customer is likely to churn within a defined fu
 
 The pipeline follows a structured, end-to-end workflow:
 
-markdown
-mermaid
-flowchart LR
-    A[Postgres ecom DB] --> B[SQL feature extraction]
-    B --> C[Python feature engineering]
-    C --> D[Model training]
-    D --> E[Daily inference via GitHub Actions]
-    E --> F[Google Sheets output]
-`
+<img width="1693" height="929" alt="image" src="https://github.com/user-attachments/assets/99490032-eafc-4886-aaf3-9c7f6c40a242" />
+
 
 **1. Data Extraction**
 
@@ -59,7 +52,8 @@ flowchart LR
 
 **5. Evaluation**
 
-* Compared models using multiple metrics (F1, AUC, training time)
+* Compared models using multiple metrics (F1, AUC, training time), selected best model
+  
 **6.**
 ---
 
