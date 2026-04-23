@@ -26,7 +26,7 @@ def get_stacking_model():
         passthrough=False
     )
 
-def save_model(model, filepath=f'models/{modelname}'):
+def save_model(model, filepath=f'model/{modelname}'):
     os.makedirs(os.path.dirname(filepath), exist_ok=True)
     with open(filepath, 'wb') as f:
         pickle.dump(model, f)
