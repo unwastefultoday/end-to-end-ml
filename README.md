@@ -52,9 +52,11 @@ The pipeline follows a structured, end-to-end workflow:
 
 **5. Evaluation**
 
-* Compared models using multiple metrics (F1, AUC, training time), selected best model
+* Compared models using multiple metrics (F1, AUC, training time), selected best model for productionization. *
   
-**6.**
+**6. Daily Running**
+* Wrote a script tp run daily and push predictions to google sheets.*
+
 ---
 
 ## 📊 Data Description
