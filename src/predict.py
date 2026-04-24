@@ -61,7 +61,7 @@ def run_pipeline(force_retrain=False):
     os.makedirs(os.path.dirname(output_path), exist_ok=True)
     output.to_csv(output_path, index=False)
     print(f"Results saved to {output_path}")
-
+    return output
 
 def push_to_sheets(df):
     creds_dict = json.loads(os.environ["GOOGLE_CREDS"])
@@ -81,6 +81,6 @@ def push_to_sheets(df):
 if __name__ == "__main__":
     # Change to True if you want to ignore the pickle and retrain
     print("Running Pipeline")
-    run_pipeline(force_retrain=False)
+    output=run_pipeline(force_retrain=False)
     push_to_sheets(output)
     print("Pushed results to Google Sheets")
