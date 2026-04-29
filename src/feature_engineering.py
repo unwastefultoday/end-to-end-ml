@@ -25,4 +25,5 @@ def clean_data(df):
     
     # Encoding
     df = pd.get_dummies(df, columns=['acquisition_channel', 'country'], drop_first=True)
+    df=df.dropna()
     return df
