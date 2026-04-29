@@ -48,8 +48,8 @@ def run_pipeline(force_retrain=False):
         print("Successfully loaded pretrained model.")
 
     # 3. Generate Results
-    probs = model.predict_proba(X_scaled)[:, 1]
-    predictions = model.predict(X_scaled)
+    probs = model.predict_proba(X)[:, 1]
+    predictions = model.predict(X)
     
     output = pd.DataFrame({
         'customer_id': customer_ids,
