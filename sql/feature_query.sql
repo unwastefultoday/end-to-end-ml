@@ -225,4 +225,4 @@ LEFT JOIN refunds_agg ra ON bc.customer_id = ra.customer_id
 LEFT JOIN device_usage du ON bc.customer_id = du.customer_id
 LEFT JOIN future_orders fo ON bc.customer_id = fo.customer_id
 CROSS JOIN cutoff c;
-"""
+
