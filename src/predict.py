@@ -22,8 +22,8 @@ def run_pipeline(force_retrain=False):
     y = df_cleaned['churn_label']
     
     # Preprocessing
-    scaler = StandardScaler()
-    X_scaled = scaler.fit_transform(X)
+    #scaler = StandardScaler()
+    #X_scaled = scaler.fit_transform(X)
 
     # 2. Model Selection (Pretrained vs Retrain)
     model = None
@@ -39,7 +39,7 @@ def run_pipeline(force_retrain=False):
             
         model = get_stacking_model()
         sm = SMOTE(random_state=42)
-        X_res, y_res = sm.fit_resample(X_scaled, y)
+        X_res, y_res = sm.fit_resample(X, y)
         model.fit(X_res, y_res)
         
         # Save the newly trained model for next time
