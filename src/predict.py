@@ -94,6 +94,6 @@ def push_to_sheets(df, spreadsheet_name="Churn Predictions", sheet_index=0):
 if __name__ == "__main__":
 
     print("Running Pipeline")
-    output=run_pipeline(force_retrain=False)
+    output=run_pipeline(force_retrain=True)
     push_to_sheets(output)
     print("Pushed results to Google Sheets")
