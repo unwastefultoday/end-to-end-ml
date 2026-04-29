@@ -63,23 +63,36 @@ def run_pipeline(force_retrain=False):
     print(f"Results saved to {output_path}")
     return output
 
-def push_to_sheets(df):
-    creds_dict = json.loads(os.environ["GOOGLE_CREDS"])
+def push_to_sheets(df, spreadsheet_name="Churn Predictions", sheet_index=0):
+    print(f"Pushing results to Google Sheet: {spreadsheet_name}...")
+    try:
+        creds_json = os.environ.get("GOOGLE_CREDS")
+        
+        if not creds_json:
+            # Fallback for local development if the env var isn't set
+            if os.path.exists('credentials.json'):
+                gc = gspread.service_account(filename='credentials.json')
+            else:
+                raise EnvironmentError("GOOGLE_CREDS environment variable not found.")
+        else:
+            creds_dict = json.loads(creds_json)
+            scopes = [
+                "https://www.googleapis.com/auth/spreadsheets",
+                "https://www.googleapis.com/auth/drive"
+            ]
+            creds = Credentials.from_service_account_info(creds_dict, scopes=scopes)
+            gc = gspread.authorize(creds)
 
-    creds = Credentials.from_service_account_info(
-        creds_dict,
-        scopes=["https://www.googleapis.com/auth/spreadsheets"]
-    )
+        sh = gc.open(spreadsheet_name)
+        worksheet = sh.get_worksheet(sheet_index)
+        worksheet.clear()
+        set_with_dataframe(worksheet, df)
 
-    client = gspread.authorize(creds)
-
-    sheet = client.open("Churn Predictions").sheet1
-
-    sheet.clear()
-    sheet.update([df.columns.values.tolist()] + df.values.tolist())
-
+        print(f"Successfully pushed {len(df)} rows to '{spreadsheet_name}'.")
+    except Exception as e:
+        print(f"Critical Error during Google Sheets sync: {e}")
 if __name__ == "__main__":
-    # Change to True if you want to ignore the pickle and retrain
+
     print("Running Pipeline")
     output=run_pipeline(force_retrain=False)
     push_to_sheets(output)
