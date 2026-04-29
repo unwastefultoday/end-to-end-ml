@@ -1,5 +1,6 @@
 # Customer Churn Prediction
 
+Link to model outputs: https://docs.google.com/spreadsheets/d/18nhCwWXJrQlHf_bZ7JhcaD17fgOEZxsiuOiqobAOsek/edit?usp=sharing
 
 ## 📌 Overview
 
